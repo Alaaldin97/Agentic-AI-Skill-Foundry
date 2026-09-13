@@ -1,0 +1,13 @@
+# Every pull request requests a review from the maintainer automatically.
+# Combined with branch protection ("require review from Code Owners"), this
+# means nothing reaches main without an explicit approval.
+
+*                       @Alaaldin97
+
+# The gate itself, the templates and the deploy pipeline are the trust boundary
+# of this repo. Listing them again is redundant today, but keeps the intent
+# obvious if a second maintainer is ever added with narrower scope.
+/scripts/               @Alaaldin97
+/.github/               @Alaaldin97
+/web/                   @Alaaldin97
+/skills/_TEMPLATE/      @Alaaldin97
