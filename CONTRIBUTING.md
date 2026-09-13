@@ -139,11 +139,17 @@ Then open the PR on GitHub. The template will prompt you for:
 - the near-miss it correctly ignored
 - which client you tested on
 
+Within a minute your skill appears under **In review** on
+[jhf-skills.azurewebsites.net](https://jhf-skills.azurewebsites.net) for the
+whole cohort to see. When it merges, it moves to the catalog automatically.
+
 ---
 
 ## Step 7 — Review someone else's
 
 **You are expected to review at least one other PR.** Not optional — it is half of what you get out of this.
+
+👉 **[See everything currently in review →](https://jhf-skills.azurewebsites.net#review-section)** — the live site lists every open PR with a direct link to its diff.
 
 What to look for:
 

@@ -6,6 +6,9 @@
   </p>
   <h1 style="color:#1a3c5e; margin:6px 0;">The Skill Foundry</h1>
   <h3 style="color:#0078d4; margin:4px 0; font-weight:600;">A shared, living library of agent skills &mdash; built, tested and used by this cohort</h3>
+  <p style="margin:12px 0 4px;">
+    <a href="https://jhf-skills.azurewebsites.net" style="display:inline-block; background:#b11f4b; color:#ffffff; padding:9px 20px; border-radius:7px; text-decoration:none; font-weight:600; font-size:14px;">Browse the live catalog &rarr;</a>
+  </p>
   <hr style="border:0; border-top:1px solid #0078d4; width:60%; margin:16px auto;" />
   <p style="font-size:12.5px; color:#777; margin:8px 0 0 0;">
     Agentic AI Bootcamp &nbsp;&middot;&nbsp; <strong>Jerusalem High-Tech Foundry (JHF)</strong> &nbsp;&middot;&nbsp; In partnership with <strong>COMCEC</strong>
@@ -15,6 +18,8 @@
 # The Skill Foundry
 
 **A foundry is where raw material gets forged into something useful.** That is what this repo is for.
+
+### 🔥 [jhf-skills.azurewebsites.net](https://jhf-skills.azurewebsites.net) — the live catalog
 
 Every skill in here was **built by someone in this cohort, tested on a real task, and merged only after the evidence was reviewed.** Nothing lands on a promise. If a skill is in `skills/`, it worked at least once, on a real machine, and you can see the proof.
 
@@ -51,14 +56,18 @@ Check with **Chat: Open Customizations** → **Skills** tab. Your skill should b
 
 ## 📚 The catalog
 
-**[→ Browse all skills in INDEX.md](INDEX.md)** — auto-generated on every merge.
+**[→ jhf-skills.azurewebsites.net](https://jhf-skills.azurewebsites.net)** — the live site. Search by what you need done, copy an install command, and see every skill currently **in review** so you can go and review one.
 
 | | |
 |---|---|
+| 🌐 **Live catalog** | **[jhf-skills.azurewebsites.net](https://jhf-skills.azurewebsites.net)** |
+| 📄 **Markdown index** | [INDEX.md](INDEX.md) — auto-generated on every merge |
 | 🗂️ **Browse by folder** | [`skills/`](skills/) |
-| 🖼️ **Visual gallery** | [`docs/gallery.html`](docs/gallery.html) — open it in a browser |
 | ➕ **Add yours** | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | 🙋 **Request one** | [Open a skill request](../../issues/new?template=skill-request.yml) |
+| 👀 **Review one** | [Open pull requests](../../pulls) |
+
+> The site rebuilds itself. Merge a skill and it appears — no deploy step, nothing to remember.
 
 ---
 
@@ -141,10 +150,28 @@ skills/
     resources/         ← optional
 scripts/
   validate_skill.py    ← run this before you push
-  build_index.py       ← regenerates INDEX.md + the gallery
+  build_index.py       ← regenerates INDEX.md, the gallery, and the live feed
+web/                   ← the live site, deployed to jhf-skills.azurewebsites.net
+  index.html
+  skills.json          ← generated; also read by the find-skills skill
 docs/
-  gallery.html         ← browsable catalog
+  gallery.html         ← offline copy of the catalog
 ```
+
+---
+
+## 🔄 How the site stays current
+
+```
+you merge a PR
+   → GitHub Actions runs build_index.py
+      → regenerates INDEX.md, gallery.html and web/skills.json from skills/
+         → zips web/ and deploys to Azure App Service
+            → verifies the live URL returns 200, or fails the run
+```
+
+**Open pull requests are fetched live in the browser** from the GitHub API, so a
+skill shows up under *In review* the moment it is submitted — no deploy, no wait.
 
 ---
 

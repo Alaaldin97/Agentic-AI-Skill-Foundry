@@ -3,16 +3,23 @@ name: Deploy site
 on:
   push:
     branches: [main]
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches: [main]
+    paths:
+      - 'skills/**'
+      - 'web/**'
+      - 'scripts/build_index.py'
+      - '.github/workflows/deploy-site.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  build_and_deploy:
-    if: github.event_name != 'pull_request' || github.event.action != 'closed'
+  deploy:
     runs-on: ubuntu-latest
-    name: Build and deploy
+    name: Build catalog and deploy
+    environment:
+      name: production
+      url: https://jhf-skills.azurewebsites.net
     steps:
       - uses: actions/checkout@v4
 
@@ -23,23 +30,27 @@ jobs:
       - name: Regenerate the catalog from skills/
         run: python scripts/build_index.py
 
-      - name: Deploy to Azure Static Web Apps
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: upload
-          app_location: 'web'
-          skip_app_build: true
-          skip_api_build: true
+      - name: Package the site
+        run: cd web && zip -r ../site.zip . -x '*.git*'
 
-  close_pr:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Tear down PR preview
-    steps:
-      - name: Close
-        uses: Azure/static-web-apps-deploy@v1
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          action: close
+          app-name: jhf-skills
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: site.zip
+
+      - name: Confirm it is serving
+        run: |
+          sleep 25
+          for i in 1 2 3 4 5; do
+            CODE=$(curl -s -o /dev/null -w '%{http_code}' https://jhf-skills.azurewebsites.net/skills.json || true)
+            if [ "$CODE" = "200" ]; then
+              echo "::notice::Live at https://jhf-skills.azurewebsites.net (skills.json $CODE)"
+              exit 0
+            fi
+            echo "attempt $i: got $CODE, retrying"
+            sleep 15
+          done
+          echo "::error::Site did not return 200 after deploy"
+          exit 1
