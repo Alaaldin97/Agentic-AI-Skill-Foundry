@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Skill Foundry — Agentic AI Bootcamp</title>
+<meta name="description" content="A living library of agent skills, forged and tested by the Agentic AI Bootcamp cohort at the Jerusalem High-Tech Foundry.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<style>
+  :root{
+    --bg:#fbf9f7; --card:#fff; --ink:#16181d; --soft:#5f6672;
+    --line:#e4e0dc; --accent:#b11f4b; --accent-soft:#fce8ee;
+    --good:#0f7a4d; --good-soft:#e6f4ee; --warn:#a35a00; --warn-soft:#fdf1e0;
+    --shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05);
+  }
+  [data-theme="dark"]{
+    --bg:#121316; --card:#1b1d22; --ink:#eceef2; --soft:#9aa3b0;
+    --line:#2b2f37; --accent:#ff90a8; --accent-soft:#3a1f28;
+    --good:#5ed39b; --good-soft:#16301f; --warn:#f0b45e; --warn-soft:#332616;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15.5px/1.65 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- header ---------- */
+  header{border-bottom:1px solid var(--line);background:var(--card)}
+  .topbar{display:flex;align-items:center;justify-content:space-between;
+    padding:14px 0;gap:16px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand img{height:30px}
+  .brand .sep{width:1px;height:26px;background:var(--line)}
+  .brand b{font-size:15px;letter-spacing:-.01em}
+  .topbar nav{display:flex;gap:6px;align-items:center}
+  .btn{padding:8px 14px;border-radius:8px;border:1px solid var(--line);
+    background:transparent;color:var(--ink);font:inherit;font-size:13.5px;
+    cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+  .btn.primary:hover{opacity:.9;color:#fff}
+
+  .hero{padding:52px 0 40px;text-align:center}
+  .hero h1{margin:0 0 12px;font-size:clamp(30px,5vw,46px);letter-spacing:-.03em;line-height:1.1}
+  .hero p.lede{margin:0 auto;max-width:660px;color:var(--soft);font-size:17px}
+  .hero .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent);background:var(--accent-soft);
+    padding:5px 12px;border-radius:20px;margin-bottom:18px}
+
+  .stats{display:flex;justify-content:center;gap:0;margin:32px auto 0;
+    border:1px solid var(--line);border-radius:12px;background:var(--card);
+    max-width:620px;overflow:hidden}
+  .stat{flex:1;padding:18px 12px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-size:28px;letter-spacing:-.02em;line-height:1.1}
+  .stat span{font-size:12px;color:var(--soft);text-transform:uppercase;letter-spacing:.06em}
+  .stat.live b{color:var(--warn)}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{position:sticky;top:0;z-index:20;background:var(--bg);
+    padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:26px}
+  .toolrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  #q{flex:1;min-width:230px;padding:11px 15px;border:1px solid var(--line);
+    border-radius:9px;background:var(--card);color:var(--ink);font:inherit;font-size:14px}
+  #q:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+  .chip{padding:8px 14px;border:1px solid var(--line);border-radius:20px;
+    background:var(--card);color:var(--soft);cursor:pointer;font:inherit;font-size:13px}
+  .chip:hover{border-color:var(--accent)}
+  .chip.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:44px}
+  .shead{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .shead h2{margin:0;font-size:21px;letter-spacing:-.02em}
+  .shead .n{font-size:13px;color:var(--soft)}
+  .shead p{margin:0 0 18px;color:var(--soft);font-size:14px}
+  .sub{margin:0 0 18px;color:var(--soft);font-size:14px}
+
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;
+    padding:20px;display:flex;flex-direction:column;gap:11px;box-shadow:var(--shadow)}
+  .card.hide{display:none}
+  .badge{align-self:flex-start;font-size:10.5px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;border-radius:5px;padding:3px 8px;
+    color:var(--c,var(--accent));border:1px solid currentColor}
+  .card h3{margin:0;font-size:19px;letter-spacing:-.01em}
+  .card h3 a{color:var(--ink);text-decoration:none}
+  .card h3 a:hover{color:var(--accent)}
+  .desc{margin:0;color:var(--soft);font-size:14px}
+  .dormant{margin:0;font-size:12.5px;color:var(--soft);
+    border-left:2px solid var(--line);padding-left:11px}
+  .dormant b{color:var(--ink)}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:11px;background:var(--bg);border:1px solid var(--line);
+    border-radius:5px;padding:2px 8px;color:var(--soft)}
+  .install{display:flex;gap:6px;align-items:stretch;margin-top:2px}
+  .install code{flex:1;background:var(--bg);border:1px solid var(--line);
+    border-radius:7px;padding:8px 10px;font-size:11.5px;overflow:auto;
+    white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .copy{padding:0 11px;font-size:12px;white-space:nowrap}
+  .copy.done{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+  .card footer{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--soft)}
+  .card footer a{text-decoration:none;font-weight:600}
+
+  /* review cards */
+  .card.pr{border-color:var(--warn);background:var(--warn-soft)}
+  [data-theme="dark"] .card.pr{background:var(--card);border-color:var(--warn)}
+  .card.pr .badge{color:var(--warn)}
+
+  .empty{grid-column:1/-1;text-align:center;padding:56px 20px;color:var(--soft);
+    border:1px dashed var(--line);border-radius:13px}
+  .empty h3{margin:0 0 8px;color:var(--ink);font-size:18px}
+
+  /* how it works */
+  .steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .step b{display:flex;align-items:center;gap:9px;margin-bottom:7px;font-size:15px}
+  .step .num{display:inline-flex;align-items:center;justify-content:center;
+    width:23px;height:23px;border-radius:50%;background:var(--accent);color:#fff;
+    font-size:12px;font-weight:700;flex-shrink:0}
+  .step p{margin:0;font-size:13.5px;color:var(--soft)}
+  .step code{font-size:12px;background:var(--bg);padding:1px 5px;border-radius:4px}
+
+  .callout{background:var(--card);border:1px solid var(--line);
+    border-left:3px solid var(--accent);border-radius:10px;padding:18px 20px;margin-top:18px}
+  .callout p{margin:0;font-size:14px;color:var(--soft)}
+  .callout p b{color:var(--ink)}
+
+  footer.page{border-top:1px solid var(--line);margin-top:20px;padding:30px 0;
+    text-align:center;color:var(--soft);font-size:13px;background:var(--card)}
+  .err{background:var(--warn-soft);border:1px solid var(--warn);color:var(--warn);
+    padding:11px 15px;border-radius:9px;font-size:13.5px;margin-bottom:18px}
+  @media(max-width:560px){.stat b{font-size:22px}.topbar nav .hide-sm{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <img src="jhf-logo.png" alt="Jerusalem High-Tech Foundry">
+      <span class="sep"></span>
+      <img src="comcec-logo.png" alt="COMCEC">
+      <span class="sep"></span>
+      <b>The Skill Foundry</b>
+    </div>
+    <nav>
+      <button class="btn" id="theme" title="Toggle theme">◐</button>
+      <a class="btn hide-sm" href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn primary" href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Upload a skill</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <span class="kicker">Agentic AI Bootcamp · JHF × COMCEC</span>
+  <h1>A library of agent skills,<br>forged by this cohort</h1>
+  <p class="lede">
+    Every skill here was built by a student, tested on a real task, and merged only
+    after the evidence was reviewed. Nothing lands on a promise.
+  </p>
+  <div class="stats">
+    <div class="stat"><b id="n-skills">—</b><span>merged</span></div>
+    <div class="stat live"><b id="n-review">—</b><span>in review</span></div>
+    <div class="stat"><b id="n-authors">—</b><span>contributors</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="toolbar">
+    <div class="toolrow">
+      <input id="q" placeholder="Search by what you need done — e.g. &quot;linkedin post&quot;, &quot;review&quot;…" autocomplete="off">
+      <div id="chips"></div>
+    </div>
+  </div>
+
+  <div id="err"></div>
+
+  <!-- IN REVIEW ------------------------------------------------------- -->
+  <section id="review-section" style="display:none">
+    <div class="shead">
+      <h2>In review right now</h2><span class="n" id="review-n"></span>
+    </div>
+    <p class="sub">
+      Open pull requests, live from GitHub. <b>Anyone can review these</b> — click
+      through, install the branch, try to break it, and leave one concrete comment.
+    </p>
+    <div class="grid" id="review-grid"></div>
+  </section>
+
+  <!-- MERGED ---------------------------------------------------------- -->
+  <section>
+    <div class="shead">
+      <h2>Merged skills</h2><span class="n" id="merged-n"></span>
+    </div>
+    <p class="sub">Reviewed, evidenced, and installable in 30 seconds.</p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- HOW ------------------------------------------------------------- -->
+  <section id="how">
+    <div class="shead"><h2>How to add yours</h2></div>
+    <p class="sub">
+      Skills ship as <b>pull requests, not issues</b> — an issue is a conversation
+      that gets closed, a PR is files that get merged and stay installable.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <b><span class="num">1</span> Branch &amp; copy</b>
+        <p><code>git checkout -b skill/my-skill</code> then copy <code>skills/_TEMPLATE</code>.</p>
+      </div>
+      <div class="step">
+        <b><span class="num">2</span> Build &amp; run it</b>
+        <p>Test it on a real task. You need a transcript — a description of one will not pass.</p>
+      </div>
+      <div class="step">
+        <b><span class="num">3</span> Prove both directions</b>
+        <p>That it fires on the symptom, <b>and</b> that it stays quiet on a near-miss.</p>
+      </div>
+      <div class="step">
+        <b><span class="num">4</span> Validate, push, review</b>
+        <p><code>python scripts/validate_skill.py</code> — then open the PR and review someone else's.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <p><b>That validator is a gate, not a suggestion.</b> The same script runs in CI
+      and blocks the merge if it fails. A rule in prose is advisory; a rule in code
+      is enforced — which is the whole lesson of Module 5B, applied to the repo you
+      are contributing to.</p>
+    </div>
+  </section>
+</div>
+
+<footer class="page">
+  <div class="wrap">
+    <p style="margin:0 0 6px">
+      <a href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry" target="_blank" rel="noopener">Repository</a> ·
+      <a href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a> ·
+      <a href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/issues/new?template=skill-request.yml" target="_blank" rel="noopener">Request a skill</a> ·
+      <a href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/pulls" target="_blank" rel="noopener">Open PRs</a>
+    </p>
+    <p style="margin:0">Agentic AI Bootcamp · Jerusalem High-Tech Foundry × COMCEC · <span id="gen"></span></p>
+  </div>
+</footer>
+
+<script>
+const REPO = 'Alaaldin97/Agentic-AI-Skill-Foundry';
+const SHAPES = {
+  instructions:['Instructions only','#6b7fd7'], method:['Enforces a method','#8b5cf6'],
+  scripts:['Ships scripts','#0f9d58'], knowledge:['Ships knowledge','#d97706'],
+  runtime:['Ships a runtime','#b11f4b']
+};
+const esc = s => String(s??'').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* theme */
+const root = document.documentElement;
+root.dataset.theme = localStorage.getItem('sf-theme') ||
+  (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+document.getElementById('theme').onclick = () => {
+  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('sf-theme', root.dataset.theme);
+};
+
+let SKILLS = [], filter = '*';
+
+function card(s){
+  const [label,colour] = SHAPES[s.shape] || SHAPES.instructions;
+  const tags = [];
+  if (s.has_scripts) tags.push('scripts');
+  if (s.has_resources) tags.push('resources');
+  if (s.tested_on) tags.push(esc(s.tested_on));
+  const who = s.github
+    ? `<a href="https://github.com/${esc(s.github)}" target="_blank" rel="noopener">@${esc(s.github)}</a>`
+    : esc(s.author);
+  const install = `cp -r skills/${s.folder} ~/.agents/skills/`;
+  return `<article class="card" data-cat="${esc(s.category)}"
+      data-s="${esc((s.name+' '+s.trigger+' '+s.category).toLowerCase())}">
+    <span class="badge" style="--c:${colour}">${label}</span>
+    <h3><a href="https://github.com/${REPO}/tree/main/skills/${esc(s.folder)}" target="_blank" rel="noopener">${esc(s.name)}</a></h3>
+    <p class="desc">${esc(s.trigger)}</p>
+    ${s.dormant ? `<p class="dormant"><b>Does not fire on:</b> ${esc(s.dormant)}</p>` : ''}
+    ${tags.length ? `<div class="tags">${tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>` : ''}
+    <div class="install">
+      <code>${esc(install)}</code>
+      <button class="btn copy" data-c="${esc(install)}">copy</button>
+    </div>
+    <footer><span>${who}</span>
+      <a href="https://github.com/${REPO}/blob/main/skills/${esc(s.folder)}/EVIDENCE.md" target="_blank" rel="noopener">See it run →</a>
+    </footer></article>`;
+}
+
+function render(){
+  const grid = document.getElementById('grid');
+  if (!SKILLS.length){
+    grid.innerHTML = `<div class="empty"><h3>Nothing forged yet</h3>
+      <p>Be the first — <a href="https://github.com/${REPO}/blob/main/CONTRIBUTING.md">see CONTRIBUTING.md</a>.</p></div>`;
+    return;
+  }
+  grid.innerHTML = SKILLS.map(card).join('');
+  grid.querySelectorAll('.copy').forEach(b => b.onclick = async () => {
+    await navigator.clipboard.writeText(b.dataset.c);
+    b.textContent = 'copied'; b.classList.add('done');
+    setTimeout(()=>{ b.textContent='copy'; b.classList.remove('done'); }, 1600);
+  });
+  apply();
+}
+
+function apply(){
+  const t = document.getElementById('q').value.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll('#grid .card').forEach(c => {
+    const ok = (filter==='*' || c.dataset.cat===filter) && (!t || c.dataset.s.includes(t));
+    c.classList.toggle('hide', !ok);
+    if (ok) shown++;
+  });
+  document.getElementById('merged-n').textContent =
+    shown === SKILLS.length ? `${shown}` : `${shown} of ${SKILLS.length}`;
+}
+
+function chips(){
+  const cats = [...new Set(SKILLS.map(s=>s.category))].sort();
+  const box = document.getElementById('chips');
+  box.innerHTML = `<button class="chip on" data-f="*">all</button>` +
+    cats.map(c=>`<button class="chip" data-f="${esc(c)}">${esc(c.replace(/-/g,' '))}</button>`).join('');
+  box.querySelectorAll('.chip').forEach(ch => ch.onclick = () => {
+    box.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    ch.classList.add('on'); filter = ch.dataset.f; apply();
+  });
+}
+
+/* ---- merged skills: from the generated feed ---- */
+async function loadSkills(){
+  try {
+    const r = await fetch('skills.json?t=' + Date.now());
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    SKILLS = d.skills || [];
+    document.getElementById('n-skills').textContent = SKILLS.length;
+    document.getElementById('n-authors').textContent =
+      new Set(SKILLS.map(s=>s.github||s.author)).size;
+    if (d.generated)
+      document.getElementById('gen').textContent =
+        'catalog built ' + new Date(d.generated).toLocaleString();
+    chips(); render();
+  } catch(e){
+    document.getElementById('err').innerHTML =
+      `<div class="err">Could not load the catalog (${esc(e.message)}). The repo is still browsable on
+       <a href="https://github.com/${REPO}/tree/main/skills">GitHub</a>.</div>`;
+    document.getElementById('n-skills').textContent = '?';
+  }
+}
+
+/* ---- in review: live from the GitHub API, no deploy needed ---- */
+async function loadReview(){
+  try {
+    const r = await fetch(`https://api.github.com/repos/${REPO}/pulls?state=open&per_page=30`);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const prs = await r.json();
+    document.getElementById('n-review').textContent = prs.length;
+    if (!prs.length) return;
+
+    document.getElementById('review-section').style.display = '';
+    document.getElementById('review-n').textContent = prs.length;
+    document.getElementById('review-grid').innerHTML = prs.map(p => {
+      const age = Math.max(0, Math.round((Date.now()-new Date(p.created_at))/864e5));
+      return `<article class="card pr">
+        <span class="badge">Awaiting review</span>
+        <h3><a href="${esc(p.html_url)}" target="_blank" rel="noopener">${esc(p.title)}</a></h3>
+        <p class="desc">${esc((p.body||'').replace(/[#*`>\r]/g,' ').slice(0,150) || 'No description yet.')}</p>
+        <div class="tags"><span class="tag">#${p.number}</span>
+          <span class="tag">${age===0?'opened today':age+'d old'}</span>
+          <span class="tag">${esc(p.head?.ref||'')}</span></div>
+        <footer>
+          <span><a href="https://github.com/${esc(p.user.login)}" target="_blank" rel="noopener">@${esc(p.user.login)}</a></span>
+          <a href="${esc(p.html_url)}/files" target="_blank" rel="noopener">Review it →</a>
+        </footer></article>`;
+    }).join('');
+  } catch(e){
+    document.getElementById('n-review').textContent = '–';
+  }
+}
+
+document.getElementById('q').oninput = apply;
+loadSkills();
+loadReview();
+</script>
+</body>
+</html>

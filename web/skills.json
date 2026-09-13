@@ -1,0 +1,36 @@
+{
+  "generated": "2026-09-13T11:54:37+00:00",
+  "count": 2,
+  "skills": [
+    {
+      "name": "find-skills",
+      "folder": "find-skills",
+      "description": "Find an existing agent skill instead of building one from scratch. Use when the user asks to find a skill for a task, whether a skill already exists for something, or says they are about to build a skill and wants to check first. Searches The Skill Foundry, skillspool.org and GitHub. Does NOT fire on: writing or editing a skill they already have, reviewing a skill's quality, or finding a Python package, VS Code extension or MCP server.",
+      "trigger": "Find an existing agent skill instead of building one from scratch. Use when the user asks to find a skill for a task, whether a skill already exists for something, or says they are about to build a skill and wants to check first. Searches The Skill Foundry, skillspool.org and GitHub.",
+      "dormant": "writing or editing a skill they already have, reviewing a skill's quality, or finding a Python package, VS Code extension or MCP server.",
+      "author": "Alaaldin Ahmed",
+      "github": "Alaaldin97",
+      "category": "dev-tools",
+      "shape": "scripts",
+      "tested_on": "Windows 11 / Python 3.14 / VS Code 1.137",
+      "date": "2026-09-13",
+      "has_scripts": true,
+      "has_resources": true
+    },
+    {
+      "name": "skill-reviewer",
+      "folder": "skill-reviewer",
+      "description": "Review an agent skill before it is submitted or merged. Use when the user asks to review a skill, check a SKILL.md, audit a skill's description, work out why a skill is not firing, why a skill fires on the wrong prompts, or whether a skill is ready to open a pull request against The Skill Foundry. Does NOT fire on: reviewing ordinary source code, reviewing a pull request that contains no SKILL.md, or writing a brand-new skill from scratch.",
+      "trigger": "Review an agent skill before it is submitted or merged. Use when the user asks to review a skill, check a SKILL.md, audit a skill's description, work out why a skill is not firing, why a skill fires on the wrong prompts, or whether a skill is ready to open a pull request against The Skill Foundry.",
+      "dormant": "reviewing ordinary source code, reviewing a pull request that contains no SKILL.md, or writing a brand-new skill from scratch.",
+      "author": "Alaaldin Ahmed",
+      "github": "Alaaldin97",
+      "category": "dev-tools",
+      "shape": "knowledge",
+      "tested_on": "VS Code 1.137 / Python 3.12",
+      "date": "2026-09-13",
+      "has_scripts": true,
+      "has_resources": true
+    }
+  ]
+}

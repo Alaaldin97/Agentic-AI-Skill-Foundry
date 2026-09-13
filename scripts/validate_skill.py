@@ -20,12 +20,14 @@ SKILLS = ROOT / "skills"
 REQUIRED = ["SKILL.md", "EVIDENCE.md", "meta.yml"]
 
 PLACEHOLDERS = [
-    "REPLACE THIS",
-    "_TEMPLATE",
-    "Your Name",
-    "your-github-username",
-    "<the exact prompt",
-    "concrete trigger one",
+    r"REPLACE THIS",
+    # Match the template folder name only as a standalone token - otherwise it
+    # also fires on legitimate references to .github/ISSUE_TEMPLATE/.
+    r"(?<![A-Za-z])_TEMPLATE(?![A-Za-z])",
+    r"Your Name",
+    r"your-github-username",
+    r"<the exact prompt",
+    r"concrete trigger one",
 ]
 
 # Things that must never be committed.
@@ -167,11 +169,11 @@ def validate(path: pathlib.Path) -> Result:
     evidence_prose = strip_code_fences(evidence_text)
     meta_prose = strip_code_fences(meta_text)
     for ph in PLACEHOLDERS:
-        if ph in skill_prose:
+        if re.search(ph, skill_prose):
             res.error(f"SKILL.md still contains template placeholder: '{ph}'")
-        if ph in evidence_prose:
+        if re.search(ph, evidence_prose):
             res.error(f"EVIDENCE.md still contains template placeholder: '{ph}'")
-        if ph in meta_prose:
+        if re.search(ph, meta_prose):
             res.error(f"meta.yml still contains template placeholder: '{ph}'")
 
     # --- body sections ---------------------------------------------------

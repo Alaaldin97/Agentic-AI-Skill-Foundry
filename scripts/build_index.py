@@ -17,6 +17,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SKILLS = ROOT / "skills"
 INDEX = ROOT / "INDEX.md"
 GALLERY = ROOT / "docs" / "gallery.html"
+FEED = ROOT / "web" / "skills.json"
 
 SHAPES = {
     "instructions": ("Instructions only", "#6b7fd7"),
@@ -259,13 +260,28 @@ def write_gallery(skills: list[dict]) -> None:
 """, encoding="utf-8")
 
 
+def write_feed(skills: list[dict]) -> None:
+    """JSON the live site and the find-skills script both read."""
+    import json
+
+    FEED.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "generated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+        "count": len(skills),
+        "skills": skills,
+    }
+    FEED.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
 def main() -> int:
     skills = collect()
     write_index(skills)
     write_gallery(skills)
+    write_feed(skills)
     print(f"indexed {len(skills)} skill(s)")
     print(f"  {INDEX.relative_to(ROOT)}")
     print(f"  {GALLERY.relative_to(ROOT)}")
+    print(f"  {FEED.relative_to(ROOT)}")
     return 0
 
 

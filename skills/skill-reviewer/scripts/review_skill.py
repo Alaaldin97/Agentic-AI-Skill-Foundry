@@ -22,8 +22,14 @@ SECRETS = [
 
 VAGUE = ["analyze", "analyse", "help with", "improve", "manage", "handle", "process", "work with"]
 
-PLACEHOLDERS = ["REPLACE THIS", "_TEMPLATE", "Your Name", "your-github-username",
-                "concrete trigger one", "<the exact prompt"]
+PLACEHOLDERS = [
+    r"REPLACE THIS",
+    r"(?<![A-Za-z])_TEMPLATE(?![A-Za-z])",
+    r"Your Name",
+    r"your-github-username",
+    r"concrete trigger one",
+    r"<the exact prompt",
+]
 
 
 def frontmatter(text: str) -> dict:
@@ -166,7 +172,7 @@ def main() -> int:
             r"```.*?```", "", f.read_text(encoding="utf-8", errors="ignore"), flags=re.S
         )
         for ph in PLACEHOLDERS:
-            if ph in body:
+            if re.search(ph, body):
                 stale.append(f"{f.name}: '{ph}'")
     if stale:
         for item in stale:

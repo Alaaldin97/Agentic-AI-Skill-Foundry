@@ -1,0 +1,16 @@
+author: Alaaldin Ahmed
+github: Alaaldin97
+date: 2026-09-13
+
+category: dev-tools
+shape: scripts
+tested_on: Windows 11 / Python 3.14 / VS Code 1.137
+
+requires:
+  - python3
+  - network access
+
+source: >
+  Adapted from the skillspool.org find-skill skill. Rewritten to search three
+  sources nearest-first, to degrade gracefully when a source is down, and to
+  separate trust assessment into a resource file that loads only when needed.
