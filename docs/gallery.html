@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Skill Foundry — gallery</title>
+<style>
+  :root {
+    --bg:#fbf9f7; --card:#fff; --ink:#1a1a1a; --soft:#6b6b6b;
+    --line:#e6e2de; --accent:#b11f4b;
+  }
+  @media (prefers-color-scheme:dark) {
+    :root { --bg:#151314; --card:#1e1b1c; --ink:#f2efed; --soft:#a09a97;
+             --line:#332e30; --accent:#fd8ea1; }
+  }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:15px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif }
+  header { padding:48px 24px 28px; text-align:center; border-bottom:1px solid var(--line) }
+  .logos img { height:46px; margin:0 16px; vertical-align:middle }
+  h1 { margin:18px 0 6px; font-size:30px; letter-spacing:-.02em }
+  .sub { color:var(--soft); margin:0 }
+  .bar { max-width:1180px; margin:24px auto 0; padding:0 24px;
+          display:flex; gap:10px; flex-wrap:wrap; align-items:center }
+  #q { flex:1; min-width:220px; padding:10px 14px; border:1px solid var(--line);
+        border-radius:8px; background:var(--card); color:var(--ink); font-size:14px }
+  .chip { padding:8px 14px; border:1px solid var(--line); border-radius:20px;
+           background:var(--card); color:var(--soft); cursor:pointer; font-size:13px }
+  .chip.on { background:var(--accent); color:#fff; border-color:var(--accent) }
+  main { max-width:1180px; margin:0 auto; padding:24px;
+          display:grid; gap:18px; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)) }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px;
+           padding:20px; display:flex; flex-direction:column; gap:10px }
+  .card.hide { display:none }
+  .shape { align-self:flex-start; font-size:11px; font-weight:600; letter-spacing:.04em;
+            text-transform:uppercase; color:var(--c); border:1px solid var(--c);
+            border-radius:4px; padding:3px 8px }
+  .card h3 { margin:0; font-size:19px }
+  .card h3 a { color:var(--ink); text-decoration:none }
+  .card h3 a:hover { color:var(--accent) }
+  .desc { margin:0; color:var(--soft); font-size:14px }
+  .dormant { margin:0; font-size:12.5px; color:var(--soft);
+              border-left:2px solid var(--line); padding-left:10px }
+  .tags { display:flex; gap:6px; flex-wrap:wrap }
+  .tag { font-size:11px; background:var(--bg); border:1px solid var(--line);
+          border-radius:4px; padding:2px 7px; color:var(--soft) }
+  .card footer { margin-top:auto; padding-top:12px; border-top:1px solid var(--line);
+                  display:flex; justify-content:space-between; align-items:center;
+                  font-size:13px; color:var(--soft) }
+  .card footer a { color:var(--accent); text-decoration:none; font-weight:600 }
+  .empty { grid-column:1/-1; text-align:center; padding:70px 20px; color:var(--soft) }
+  footer.pg { text-align:center; padding:36px 20px; color:var(--soft); font-size:13px;
+               border-top:1px solid var(--line); margin-top:24px }
+</style></head><body>
+<header>
+  <div class="logos">
+    <img src="../assets/jhf-logo.png" alt="JHF"><img src="../assets/comcec-logo.png" alt="COMCEC">
+  </div>
+  <h1>The Skill Foundry</h1>
+  <p class="sub">1 skill · built and tested by the cohort · rebuilt 2026-09-13</p>
+</header>
+<div class="bar">
+  <input id="q" placeholder="Search by what you need done…" autocomplete="off">
+  <button class="chip on" data-f="*">all</button><button class="chip" data-f="dev-tools">dev tools</button>
+</div>
+<main id="grid">
+      <article class="card" data-cat="dev-tools" data-name="skill-reviewer review an agent skill before it is submitted or merged. use when the user asks to review a skill, check a skill.md, audit a skill&#x27;s description, work out why a skill is not firing, why a skill fires on the wrong prompts, or whether a skill is ready to open a pull request against the skill foundry.">
+        <span class="shape" style="--c:#d97706">Ships knowledge</span>
+        <h3><a href="../skills/skill-reviewer/SKILL.md">skill-reviewer</a></h3>
+        <p class="desc">Review an agent skill before it is submitted or merged. Use when the user asks to review a skill, check a SKILL.md, audit a skill&#x27;s description, work out why a skill is not firing, why a skill fires on the wrong prompts, or whether a skill is ready to open a pull request against The Skill Foundry.</p>
+        <p class="dormant"><b>Does not fire on:</b> reviewing ordinary source code, reviewing a pull request that contains no SKILL.md, or writing a brand-new skill from scratch.</p>
+        <div class="tags"><span class="tag">scripts</span><span class="tag">resources</span></div>
+        <footer>
+          <span><a href="https://github.com/Alaaldin97">@Alaaldin97</a></span>
+          <a class="ev" href="../skills/skill-reviewer/EVIDENCE.md">See it run →</a>
+        </footer>
+      </article></main>
+<footer class="pg">Agentic AI Bootcamp · Jerusalem High-Tech Foundry × COMCEC</footer>
+<script>
+  const cards=[...document.querySelectorAll('.card')];
+  const chips=[...document.querySelectorAll('.chip')];
+  const q=document.getElementById('q');
+  let filter='*';
+  function apply(){
+    const t=q.value.trim().toLowerCase();
+    cards.forEach(c=>{
+      const okCat = filter==='*' || c.dataset.cat===filter;
+      const okTxt = !t || c.dataset.name.includes(t);
+      c.classList.toggle('hide', !(okCat&&okTxt));
+    });
+  }
+  chips.forEach(c=>c.onclick=()=>{
+    chips.forEach(x=>x.classList.remove('on'));
+    c.classList.add('on'); filter=c.dataset.f; apply();
+  });
+  q.oninput=apply;
+</script>
+</body></html>

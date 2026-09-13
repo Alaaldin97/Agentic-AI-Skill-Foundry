@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📤 Submitting a finished skill
+    url: https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/blob/main/CONTRIBUTING.md
+    about: Skills ship as pull requests, not issues. Four steps, about 20 minutes.
+  - name: 📚 Browse what already exists
+    url: https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/blob/main/INDEX.md
+    about: Check the catalog before building — someone may have solved it already.

@@ -1,0 +1,37 @@
+name: Rebuild catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+      - 'scripts/build_index.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rebuild INDEX.md and the gallery
+        run: python scripts/build_index.py
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain INDEX.md docs/gallery.html)" ]; then
+            git add INDEX.md docs/gallery.html
+            git commit -m "Rebuild catalog [skip ci]"
+            git push
+          else
+            echo "Catalog already current."
+          fi

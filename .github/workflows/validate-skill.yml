@@ -1,0 +1,55 @@
+name: Validate skill
+
+on:
+  pull_request:
+    paths:
+      - 'skills/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Find skills changed in this PR
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD \
+            | grep '^skills/' \
+            | cut -d/ -f1,2 \
+            | grep -v '^skills/_' \
+            | sort -u || true)
+          echo "list<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          if [ -z "$CHANGED" ]; then
+            echo "No skill folders touched."
+          else
+            echo "Validating:"; echo "$CHANGED"
+          fi
+
+      - name: Validate
+        if: steps.changed.outputs.list != ''
+        run: |
+          FAIL=0
+          while read -r d; do
+            [ -z "$d" ] && continue
+            echo "::group::$d"
+            python scripts/validate_skill.py "$d" || FAIL=1
+            echo "::endgroup::"
+          done <<< "${{ steps.changed.outputs.list }}"
+          exit $FAIL
+
+      - name: Explain a failure
+        if: failure()
+        run: |
+          echo "::notice::A skill did not meet the merge bar."
+          echo "Run the same check locally:  python scripts/validate_skill.py skills/<your-skill>"
+          echo "See CONTRIBUTING.md for what each error means."

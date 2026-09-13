@@ -1,0 +1,61 @@
+name: 💡 Skill request
+description: Describe a job you wish an agent could do for you. Someone may build it.
+title: "[Request] "
+labels: ["skill-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Requests are the one thing that *should* be an issue — you are describing
+        a need, not shipping work. Someone in the cohort may pick it up.
+
+        **Shipping a finished skill? That's a pull request instead —
+        see [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).**
+
+  - type: textarea
+    id: job
+    attributes:
+      label: What job do you want done?
+      description: Describe the task, not the solution.
+      placeholder: "Every week I rewrite the same status update from my commit log, and it takes 40 minutes."
+    validations:
+      required: true
+
+  - type: textarea
+    id: trigger
+    attributes:
+      label: What would you type to trigger it?
+      description: The actual sentence you'd write in chat. This becomes the skill's description.
+      placeholder: "Write my weekly status update from this week's commits."
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: What should come back?
+      description: What does a good result look like? Paste an example if you have one.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: shape
+    attributes:
+      label: What shape do you think it needs?
+      options:
+        - Not sure — that's fine
+        - Instructions only — the model knows how, it just needs telling when
+        - A method — it needs to stop rushing and follow a process
+        - Scripts — something must happen identically every time
+        - Knowledge — it needs facts it cannot guess
+        - A runtime — the output needs a real toolchain
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: build
+    attributes:
+      label: Would you build it?
+      options:
+        - label: I'd like to build this myself — I'm just parking the idea
+        - label: I'm hoping someone else picks it up
