@@ -2,23 +2,41 @@
 
 Everything here takes about **20 minutes** the first time and **5 minutes** after that.
 
-> **The rule:** a skill gets merged when someone else can install it and it works for them too. That is the only bar. Everything below exists to make that likely.
+> **🚀 New to this? Start with [UPLOAD-A-SKILL.md](UPLOAD-A-SKILL.md)** — a
+> step-by-step walkthrough with a no-terminal option and a troubleshooting
+> section. This page is the reference for *what makes a good skill*; that one is
+> the mechanics of getting it uploaded.
+
+> **The rule:** a skill gets merged when someone else can install it and it works
+> for them too. That is the only bar. Everything below exists to make that likely.
 
 ---
 
 ## Before you start
 
-You need a skill that **you have actually run**. Not one you wrote and assumed works — one you watched fire on a real prompt and produce a real output. If you have not run it yet, go do that first; the evidence file will be impossible to write otherwise.
+You need a skill that **you have actually run**. Not one you wrote and assumed
+works — one you watched fire on a real prompt and produce a real output. If you
+have not run it yet, go do that first; the evidence file will be impossible to
+write otherwise.
 
 ---
 
-## Step 1 — Branch
+## Step 1 — Fork, then branch
+
+**You do not have write access to this repo, and neither does anyone else.** You
+work on your own fork and open a pull request. Click **Fork** on
+[the repository page](https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry),
+then:
 
 ```bash
-git clone https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry.git
+git clone https://github.com/YOUR-USERNAME/Agentic-AI-Skill-Foundry.git
 cd Agentic-AI-Skill-Foundry
 git checkout -b skill/my-skill-name
 ```
+
+⚠️ Note the URL is **your** username, not `Alaaldin97`. Cloning the original repo
+works fine right up until `git push`, which fails with `403`. See
+[UPLOAD-A-SKILL.md](UPLOAD-A-SKILL.md#troubleshooting) for the two-command fix.
 
 Branch naming: `skill/<kebab-case-name>`. Match your folder name.
 
@@ -174,7 +192,9 @@ This repo does not close in Week 10. If you build something at work that saves y
 ## Quick reference
 
 ```bash
-# start
+# fork on github.com first, then:
+git clone https://github.com/YOUR-USERNAME/Agentic-AI-Skill-Foundry.git
+cd Agentic-AI-Skill-Foundry
 git checkout -b skill/my-skill-name
 cp -r skills/_TEMPLATE skills/my-skill-name
 

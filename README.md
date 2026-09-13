@@ -63,7 +63,8 @@ Check with **Chat: Open Customizations** → **Skills** tab. Your skill should b
 | 🌐 **Live catalog** | **[jhf-skills.azurewebsites.net](https://jhf-skills.azurewebsites.net)** |
 | 📄 **Markdown index** | [INDEX.md](INDEX.md) — auto-generated on every merge |
 | 🗂️ **Browse by folder** | [`skills/`](skills/) |
-| ➕ **Add yours** | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| 🚀 **Upload yours** | **[UPLOAD-A-SKILL.md](UPLOAD-A-SKILL.md)** — step by step |
+| ✍️ **What makes a good one** | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | 🙋 **Request one** | [Open a skill request](../../issues/new?template=skill-request.yml) |
 | 👀 **Review one** | [Open pull requests](../../pulls) |
 
@@ -86,8 +87,9 @@ You submit a **Pull Request**, not an issue. Here's why that matters:
 **Four steps:**
 
 ```bash
-# 1. Branch
-git checkout -b skill/my-skill-name
+# 1. Fork on github.com, then clone YOUR fork
+git clone https://github.com/YOUR-USERNAME/Agentic-AI-Skill-Foundry.git
+cd Agentic-AI-Skill-Foundry && git checkout -b skill/my-skill-name
 
 # 2. Copy the template and fill it in
 cp -r skills/_TEMPLATE skills/my-skill-name
@@ -99,7 +101,8 @@ python scripts/validate_skill.py skills/my-skill-name
 git push origin skill/my-skill-name
 ```
 
-**[→ Full walkthrough in CONTRIBUTING.md](CONTRIBUTING.md)**
+**[→ Full step-by-step walkthrough: UPLOAD-A-SKILL.md](UPLOAD-A-SKILL.md)** — includes a no-terminal option and troubleshooting
+**[→ What makes a good skill: CONTRIBUTING.md](CONTRIBUTING.md)**
 
 ---
 

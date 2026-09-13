@@ -152,7 +152,7 @@
     <nav>
       <button class="btn" id="theme" title="Toggle theme">◐</button>
       <a class="btn hide-sm" href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn primary" href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Upload a skill</a>
+      <a class="btn primary" href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/blob/main/UPLOAD-A-SKILL.md" target="_blank" rel="noopener">Upload a skill</a>
     </nav>
   </div>
 </header>
@@ -211,8 +211,8 @@
     </p>
     <div class="steps">
       <div class="step">
-        <b><span class="num">1</span> Branch &amp; copy</b>
-        <p><code>git checkout -b skill/my-skill</code> then copy <code>skills/_TEMPLATE</code>.</p>
+        <b><span class="num">1</span> Fork &amp; branch</b>
+        <p>Fork this repo, clone <b>your</b> copy, then <code>git checkout -b skill/my-skill</code>.</p>
       </div>
       <div class="step">
         <b><span class="num">2</span> Build &amp; run it</b>
@@ -223,10 +223,14 @@
         <p>That it fires on the symptom, <b>and</b> that it stays quiet on a near-miss.</p>
       </div>
       <div class="step">
-        <b><span class="num">4</span> Validate, push, review</b>
+        <b><span class="num">4</span> Validate, PR, review</b>
         <p><code>python scripts/validate_skill.py</code> — then open the PR and review someone else's.</p>
       </div>
     </div>
+    <p style="margin:18px 0 0">
+      <a class="btn primary" href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/blob/main/UPLOAD-A-SKILL.md" target="_blank" rel="noopener">Full step-by-step guide →</a>
+      <a class="btn" href="https://github.com/Alaaldin97/Agentic-AI-Skill-Foundry/blob/main/skills/_TEMPLATE" target="_blank" rel="noopener">The template</a>
+    </p>
     <div class="callout">
       <p><b>That validator is a gate, not a suggestion.</b> The same script runs in CI
       and blocks the merge if it fails. A rule in prose is advisory; a rule in code
