@@ -1,0 +1,12 @@
+author: michaelnazy
+github: michaelnazy
+date: 2026-09-17
+
+category: dev-tools
+shape: knowledge
+tested_on: VS Code 1.137
+
+requires:
+  - none
+
+source: original
