@@ -1,6 +1,6 @@
 ---
 name: student-code-reviewer
-description: Review existing C, Java, or Python code to help students debug. ONLY trigger if the user provides a code snippet to review. DO NOT trigger for requests to write new code, solve assignments from scratch, or generate scripts.
+description: Review existing C, Java, or Python code to help students debug. ONLY trigger if the user provides a code snippet to review. Does NOT fire on requests to write new code, solve assignments from scratch, or generate scripts.
 ---
 
 # Skill: Student Code Reviewer
