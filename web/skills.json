@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-13T12:32:08+00:00",
-  "count": 2,
+  "generated": "2026-09-17T20:18:14+00:00",
+  "count": 3,
   "skills": [
     {
       "name": "find-skills",
@@ -30,6 +30,21 @@
       "tested_on": "VS Code 1.137 / Python 3.12",
       "date": "2026-09-13",
       "has_scripts": true,
+      "has_resources": true
+    },
+    {
+      "name": "student-code-reviewer",
+      "folder": "student-code-reviewer",
+      "description": "Review existing C, Java, or Python code to help students debug. ONLY trigger if the user provides a code snippet to review. Does NOT fire on requests to write new code, solve assignments from scratch, or generate scripts.",
+      "trigger": "Review existing C, Java, or Python code to help students debug. ONLY trigger if the user provides a code snippet to review. Does NOT fire on requests to write new code, solve assignments from scratch, or generate scripts.",
+      "dormant": "",
+      "author": "michaelnazy",
+      "github": "michaelnazy",
+      "category": "dev-tools",
+      "shape": "knowledge",
+      "tested_on": "VS Code 1.137",
+      "date": "2026-09-17",
+      "has_scripts": false,
       "has_resources": true
     }
   ]
