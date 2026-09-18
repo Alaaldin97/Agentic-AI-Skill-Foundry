@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-18T19:49:25+00:00",
-  "count": 7,
+  "generated": "2026-09-18T20:54:41+00:00",
+  "count": 8,
   "skills": [
     {
       "name": "adaptive-calendar-planner",
@@ -43,6 +43,21 @@
       "category": "productivity",
       "shape": "method",
       "tested_on": "VS Code",
+      "date": "2026-09-18",
+      "has_scripts": false,
+      "has_resources": false
+    },
+    {
+      "name": "lecture-timeline-mapper",
+      "folder": "lecture-timeline-mapper",
+      "description": "Match a timestamped lecture transcript to the user's notes, slides, topics, examples, or definitions so they can find where specific study material was explained. Use this when the user asks where a slide, topic, example, or note appears in a lecture, or when they want to build a study timeline from lecture timestamps. Does NOT fire on: ordinary video summaries, transcript extraction alone, generic note summarization, or requests that do not include timestamped lecture content.",
+      "trigger": "Match a timestamped lecture transcript to the user's notes, slides, topics, examples, or definitions so they can find where specific study material was explained. Use this when the user asks where a slide, topic, example, or note appears in a lecture, or when they want to build a study timeline from lecture timestamps.",
+      "dormant": "ordinary video summaries, transcript extraction alone, generic note summarization, or requests that do not include timestamped lecture content.",
+      "author": "Jana Hirbawi",
+      "github": "JanaHirbawi",
+      "category": "productivity",
+      "shape": "method",
+      "tested_on": "VS Code 1.137",
       "date": "2026-09-18",
       "has_scripts": false,
       "has_resources": false
