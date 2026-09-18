@@ -45,7 +45,10 @@ Summarize this lecture in a few bullet points.
 |---|---|
 | Description in the menu (always loaded) | ~120 |
 | Body, once it fired | ~600 |
-| What stayed on disk because it did not fire | ~0 |
+| What stayed on disk because it did not fire | ~600 |
+
+On the dormancy run only the ~120-token description was in play; the ~600-token
+body was never loaded, so that is what staying quiet saved.
 
 ---
 
