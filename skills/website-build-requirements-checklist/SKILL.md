@@ -1,6 +1,6 @@
 ---
 name: website-build-requirements-checklist
-description: "Use when a user is planning or building a website or web app and asks what requirements, features, controls, or technical components they should include. Typical requests include 'What do I need to build a dynamic website?', 'I want to build a website with user accounts and payments, what should I include?', or 'What requirements should I consider for this web app?' Does NOT fire on: checking whether an already-built site is ready to launch, pre-launch audits, fixing specific HTML/CSS/JavaScript bugs, redesigning a page, writing website copy, SEO-only questions, security-only audits, or requests to directly build/code the whole website."
+description: "Use when a user is planning or building a website or web app and asks what requirements, features, controls, or technical components to include. Typical requests ask what is needed to build a website, plan a web app, or include features such as accounts, payments, forms, or dashboards. Does NOT fire on: launch-readiness audits, specific coding bugs, page redesign, copywriting, SEO-only or security-only requests, or requests to build the whole site."
 ---
 
 # Website Build Requirements Checklist
