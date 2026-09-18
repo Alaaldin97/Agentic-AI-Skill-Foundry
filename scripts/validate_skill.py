@@ -67,11 +67,29 @@ def strip_code_fences(text: str) -> str:
     return re.sub(r"```.*?```", "", text, flags=re.S)
 
 
+def _strip_comment(value: str) -> str:
+    """Remove a trailing YAML comment.
+
+    A `#` only starts a comment when it is at the start of the value or
+    preceded by whitespace, so tokens like `C#` survive.
+    """
+    m = re.search(r"(?:^|\s)#", value)
+    return value[: m.start()].rstrip() if m else value
+
+
+def _unquote(value: str) -> str:
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+        return value[1:-1].strip()
+    return value
+
+
 def parse_frontmatter(text: str) -> dict | None:
     """Minimal YAML frontmatter reader - no dependency on PyYAML.
 
     Handles `key: value` and folded `key: >` blocks, which is all a SKILL.md
-    header should ever need.
+    header should ever need. Full-line and trailing `#` comments are ignored,
+    because `_TEMPLATE/meta.yml` ships with explanatory comments and authors
+    are expected to keep them.
     """
     if not text.startswith("---"):
         return None
@@ -85,20 +103,20 @@ def parse_frontmatter(text: str) -> dict | None:
     buf: list[str] = []
 
     for raw in block.split("\n"):
-        if not raw.strip():
+        if not raw.strip() or raw.lstrip().startswith("#"):
             continue
         m = re.match(r"^([A-Za-z_][A-Za-z0-9_-]*):\s*(.*)$", raw)
         if m and not raw.startswith((" ", "\t")):
             if key:
-                data[key] = " ".join(buf).strip()
+                data[key] = _unquote(" ".join(buf).strip())
             key = m.group(1)
-            val = m.group(2).strip()
+            val = _strip_comment(m.group(2).strip())
             buf = [] if val in (">", "|", ">-", "|-") else [val]
         elif key:
-            buf.append(raw.strip())
+            buf.append(_strip_comment(raw.strip()))
 
     if key:
-        data[key] = " ".join(buf).strip()
+        data[key] = _unquote(" ".join(buf).strip())
     return data
 
 

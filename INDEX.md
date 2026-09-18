@@ -14,7 +14,7 @@
 | **[screen-guide](skills/screen-guide/)** | Guides users from a single screenshot through the exact sequence of clicks needed to complete a task in an app… | Enforces a method | [@batoolmuharam-lang](https://github.com/batoolmuharam-lang) |
 | **[skill-reviewer](skills/skill-reviewer/)** | Review an agent skill before it is submitted or merged. Use when the user asks to review a skill, check a SKIL… | Ships knowledge | [@Alaaldin97](https://github.com/Alaaldin97) |
 | **[student-code-reviewer](skills/student-code-reviewer/)** | Review existing C, Java, or Python code to help students debug. ONLY trigger if the user provides a code snipp… | Ships knowledge | [@michaelnazy](https://github.com/michaelnazy) |
-| **[website-build-requirements-checklist](skills/website-build-requirements-checklist/)** | "Use when a user is planning or building a website or web app and asks what requirements, features, controls, … | Instructions only | [@set168111](https://github.com/set168111) |
+| **[website-build-requirements-checklist](skills/website-build-requirements-checklist/)** | Use when a user is planning or building a website or web app and asks what requirements, features, controls, o… | Enforces a method | [@set168111](https://github.com/set168111) |
 
 ---
 
@@ -59,16 +59,13 @@ Review existing C, Java, or Python code to help students debug. ONLY trigger if 
 
 [SKILL.md](skills/student-code-reviewer/SKILL.md) · [Evidence](skills/student-code-reviewer/EVIDENCE.md)
 
-
-## Dev Tools # Which Shape Is It? One Of: #   Instructions     Skill.Md Only #   Method           Skill.Md That Enforces A Process #   Scripts          Ships Scripts/ #   Knowledge        Ships Resources/ #   Runtime          Ships A Whole Toolchain
-
 ### [website-build-requirements-checklist](skills/website-build-requirements-checklist/)
 
-"Use when a user is planning or building a website or web app and asks what requirements, features, controls, or technical components to include. Typical requests ask what is needed to build a website, plan a web app, or include features such as accounts, payments, forms, or dashboards.
+Use when a user is planning or building a website or web app and asks what requirements, features, controls, or technical components to include. Typical requests ask what is needed to build a website, plan a web app, or include features such as accounts, payments, forms, or dashboards.
 
-> **Does not fire on:** launch-readiness audits, specific coding bugs, page redesign, copywriting, SEO-only or security-only requests, or requests to build the whole site."
+> **Does not fire on:** launch-readiness audits, specific coding bugs, page redesign, copywriting, SEO-only or security-only requests, or requests to build the whole site.
 
-*tested on VS Code 1.137 # Does it need anything beyond the agent itself?*
+*tested on VS Code 1.137*
 
 [SKILL.md](skills/website-build-requirements-checklist/SKILL.md) · [Evidence](skills/website-build-requirements-checklist/EVIDENCE.md)
 

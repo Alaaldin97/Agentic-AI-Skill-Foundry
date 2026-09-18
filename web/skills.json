@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-18T18:48:33+00:00",
+  "generated": "2026-09-18T18:54:58+00:00",
   "count": 5,
   "skills": [
     {
@@ -65,15 +65,15 @@
     {
       "name": "website-build-requirements-checklist",
       "folder": "website-build-requirements-checklist",
-      "description": "\"Use when a user is planning or building a website or web app and asks what requirements, features, controls, or technical components to include. Typical requests ask what is needed to build a website, plan a web app, or include features such as accounts, payments, forms, or dashboards. Does NOT fire on: launch-readiness audits, specific coding bugs, page redesign, copywriting, SEO-only or security-only requests, or requests to build the whole site.\"",
-      "trigger": "\"Use when a user is planning or building a website or web app and asks what requirements, features, controls, or technical components to include. Typical requests ask what is needed to build a website, plan a web app, or include features such as accounts, payments, forms, or dashboards.",
-      "dormant": "launch-readiness audits, specific coding bugs, page redesign, copywriting, SEO-only or security-only requests, or requests to build the whole site.\"",
+      "description": "Use when a user is planning or building a website or web app and asks what requirements, features, controls, or technical components to include. Typical requests ask what is needed to build a website, plan a web app, or include features such as accounts, payments, forms, or dashboards. Does NOT fire on: launch-readiness audits, specific coding bugs, page redesign, copywriting, SEO-only or security-only requests, or requests to build the whole site.",
+      "trigger": "Use when a user is planning or building a website or web app and asks what requirements, features, controls, or technical components to include. Typical requests ask what is needed to build a website, plan a web app, or include features such as accounts, payments, forms, or dashboards.",
+      "dormant": "launch-readiness audits, specific coding bugs, page redesign, copywriting, SEO-only or security-only requests, or requests to build the whole site.",
       "author": "Sari Tahhan",
       "github": "set168111",
-      "category": "dev-tools # Which shape is it? One of: #   instructions   - SKILL.md only #   method         - SKILL.md that enforces a process #   scripts        - ships scripts/ #   knowledge      - ships resources/ #   runtime        - ships a whole toolchain",
-      "shape": "method # Where you actually ran it.",
-      "tested_on": "VS Code 1.137 # Does it need anything beyond the agent itself?",
-      "date": "2026-09-18 # One of: writing, research, data, dev-tools, design, productivity, #         business, media, other",
+      "category": "dev-tools",
+      "shape": "method",
+      "tested_on": "VS Code 1.137",
+      "date": "2026-09-18",
       "has_scripts": false,
       "has_resources": false
     }
