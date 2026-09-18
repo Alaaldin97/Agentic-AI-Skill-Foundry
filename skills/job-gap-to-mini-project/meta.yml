@@ -1,0 +1,27 @@
+# Metadata for the catalog. Keep it short; INDEX.md is built from this file.
+
+author: Diana Atieh
+github: DianaAtieh
+date: 2026-09-18
+
+# One of: writing, research, data, dev-tools, design, productivity,
+#         business, media, other
+category: productivity
+
+# Which shape is it? One of:
+#   instructions   - SKILL.md only
+#   method         - SKILL.md that enforces a process
+#   scripts        - ships scripts/
+#   knowledge      - ships resources/
+#   runtime        - ships a whole toolchain
+shape: method
+
+# Where you actually ran it.
+tested_on: VS Code
+
+# Does it need anything beyond the agent itself?
+requires:
+  - none
+
+# Optional: where the idea came from, if it was adapted rather than original.
+source: original
