@@ -43,6 +43,13 @@ The user provided a screenshot of a software interface and asked for a complete 
 
 This is exactly what screen-guide is designed to handle.
 
+**Did it activate on its own?** No — this run was explicitly invoked with
+`/screen-guide`, so it demonstrates that the skill *behaves* correctly once
+loaded, not that the router selects it unprompted. Automatic trigger behaviour
+still needs to be tested with a natural-language prompt that does not name the
+skill, for example: *"I'm on this screen and I want to cancel my subscription —
+where do I tap?"* with the screenshot attached and nothing else.
+
 ## Dormancy test
 
 ### Near-miss prompt

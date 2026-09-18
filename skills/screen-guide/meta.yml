@@ -3,7 +3,7 @@ github: batoolmuharam-lang
 date: 2026-09-18
 
 category: dev-tools
-shape: knowledge
+shape: method
 tested_on: Windows 11 / VS Code
 
 requires:
