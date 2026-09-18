@@ -3,7 +3,7 @@ github: ahmad-salman322
 date: 2026-09-19
 category: dev-tools
 shape: method
-tested_on: TBD
+tested_on: Claude Code 2.1.272
 requires:
   - git
 source: original
