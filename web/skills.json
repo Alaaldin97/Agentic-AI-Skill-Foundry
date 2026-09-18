@@ -1,7 +1,22 @@
 {
-  "generated": "2026-09-18T18:54:58+00:00",
-  "count": 5,
+  "generated": "2026-09-18T19:49:25+00:00",
+  "count": 7,
   "skills": [
+    {
+      "name": "adaptive-calendar-planner",
+      "folder": "adaptive-calendar-planner",
+      "description": "Plan, add, move, or re-plan events in the user's connected calendar — tasks, appointments, date ranges, and progress updates such as \"I am late\" or \"move this to Friday\". Reads the calendar before scheduling and adapts flexible blocks when plans change. Does NOT fire on: general productivity advice, simple date/time questions, read-only questions about what is already scheduled, or project planning that is not being written to the calendar.",
+      "trigger": "Plan, add, move, or re-plan events in the user's connected calendar — tasks, appointments, date ranges, and progress updates such as \"I am late\" or \"move this to Friday\". Reads the calendar before scheduling and adapts flexible blocks when plans change.",
+      "dormant": "general productivity advice, simple date/time questions, read-only questions about what is already scheduled, or project planning that is not being written to the calendar.",
+      "author": "Hadeel Abdellatif",
+      "github": "HadelAbdellatif",
+      "category": "productivity",
+      "shape": "method",
+      "tested_on": "VS Code 1.137",
+      "date": "2026-09-18",
+      "has_scripts": false,
+      "has_resources": false
+    },
     {
       "name": "find-skills",
       "folder": "find-skills",
@@ -16,6 +31,21 @@
       "date": "2026-09-13",
       "has_scripts": true,
       "has_resources": true
+    },
+    {
+      "name": "job-gap-to-mini-project",
+      "folder": "job-gap-to-mini-project",
+      "description": "Compare a provided CV or resume against a specific provided job or internship description to find technical evidence gaps and turn one gap into a small portfolio project. Requires both the candidate's CV/resume and a target job description. Does NOT fire on: general learning projects, general project ideas, CV editing, or requests that provide only a technology to practice.",
+      "trigger": "Compare a provided CV or resume against a specific provided job or internship description to find technical evidence gaps and turn one gap into a small portfolio project. Requires both the candidate's CV/resume and a target job description.",
+      "dormant": "general learning projects, general project ideas, CV editing, or requests that provide only a technology to practice.",
+      "author": "Diana Atieh",
+      "github": "DianaAtieh",
+      "category": "productivity",
+      "shape": "method",
+      "tested_on": "VS Code",
+      "date": "2026-09-18",
+      "has_scripts": false,
+      "has_resources": false
     },
     {
       "name": "screen-guide",
