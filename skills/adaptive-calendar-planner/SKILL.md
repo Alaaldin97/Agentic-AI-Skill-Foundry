@@ -2,15 +2,13 @@
 name: adaptive-calendar-planner
 
 description: >
-  Plan, add, move, or re-plan my schedule in my connected calendar when I give you
-  tasks, appointments, date changes, date ranges, or progress updates such as
-  "I am late", "I finished", "move this to Friday", or "plan this project from
-  September 12 to 13". Read the existing calendar before scheduling and adapt
-  flexible time blocks when plans change.
+  Plan, add, move, or re-plan events in the user's connected calendar — tasks,
+  appointments, date ranges, and progress updates such as "I am late" or "move
+  this to Friday". Reads the calendar before scheduling and adapts flexible
+  blocks when plans change.
   Does NOT fire on: general productivity advice, simple date/time questions,
-  requests that only ask what is already on the calendar without planning or
-  changing it, or long-term project planning that is not being scheduled into
-  the calendar.
+  read-only questions about what is already scheduled, or project planning that
+  is not being written to the calendar.
 ---
 
 # Adaptive Calendar Planner
