@@ -1,0 +1,15 @@
+author: Batool Muharam
+github: batoolmuharam-lang
+date: 2026-09-18
+
+category: dev-tools
+shape: method
+tested_on: Windows 11 / VS Code
+
+requires:
+  - image input
+
+source: >
+  Original skill created for the Agentic AI Bootcamp.
+  It guides users from a single screenshot through the expected
+  sequence of interface clicks needed to complete a task.
