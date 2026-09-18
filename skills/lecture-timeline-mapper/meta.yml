@@ -14,7 +14,7 @@ category: productivity
 #   scripts        - ships scripts/
 #   knowledge      - ships resources/
 #   runtime        - ships a whole toolchain
-shape: instructions
+shape: method
 # Where you actually ran it.
 tested_on: VS Code 1.137
 
