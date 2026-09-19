@@ -1,0 +1,12 @@
+author: Mohanad Masri
+github: mohanadmasri
+date: 2026-09-19
+
+category: dev-tools
+shape: scripts
+tested_on: Python 3.12 / JHF skill runner structure
+
+requires:
+  - python3
+
+source: original, based on Scenario 8 in the JHF Module 5B lab
