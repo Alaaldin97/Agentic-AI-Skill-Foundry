@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Frontend Change Report — {{PROJECT_NAME}}</title>
+<style>
+  :root {
+    --bg: #0b0d12;
+    --panel: #12151c;
+    --panel-2: #171b24;
+    --border: #262b36;
+    --text: #e6e8ee;
+    --muted: #9aa2b1;
+    --accent: #6ea8fe;
+    --accent-2: #8b5cf6;
+    --high: #f43f5e;
+    --medium: #f59e0b;
+    --low: #22c55e;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* Header */
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+  header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+  header .meta { color: var(--muted); font-size: 0.9rem; }
+  .stat-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .stat {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    text-align: center;
+    min-width: 90px;
+  }
+  .stat b { display: block; font-size: 1.25rem; }
+  .stat span { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; }
+
+  /* Summary */
+  .summary {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .summary h2 { margin-top: 0; font-size: 1rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+  /* Component cards */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .card-head h3 { margin: 0 0 4px; font-size: 1.15rem; }
+  .card-head .page { color: var(--muted); font-size: 0.85rem; }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge {
+    font-size: 0.72rem;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .impact-high { color: var(--high); border-color: var(--high); }
+  .impact-medium { color: var(--medium); border-color: var(--medium); }
+  .impact-low { color: var(--low); border-color: var(--low); }
+
+  /* Comparison widget */
+  .compare-tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+  .compare-tabs button {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    cursor: pointer;
+  }
+  .compare-tabs button.active { color: var(--text); border-color: var(--accent); }
+
+  .compare-stage { position: relative; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--panel-2); }
+  .compare-view { display: none; }
+  .compare-view.active { display: block; }
+
+  /* side-by-side */
+  .side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+  .pane { background: var(--panel-2); padding: 16px; min-height: 120px; }
+  .pane .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 8px; }
+  .pane.before .label { color: var(--high); }
+  .pane.after .label { color: var(--low); }
+  .pane img, .pane .mock { max-width: 100%; display: block; border-radius: 6px; }
+
+  /* slider */
+  .slider-wrap { position: relative; height: 260px; }
+  .slider-wrap .layer { position: absolute; inset: 0; padding: 16px; overflow: hidden; }
+  .slider-wrap .layer.before-layer { z-index: 1; }
+  .slider-wrap .layer.after-layer { z-index: 2; clip-path: inset(0 50% 0 0); }
+  .slider-wrap img, .slider-wrap .mock { max-width: 100%; }
+  .slider-handle {
+    position: absolute; top: 0; bottom: 0; left: 50%; width: 3px;
+    background: var(--accent); cursor: ew-resize; z-index: 3; transform: translateX(-50%);
+  }
+  .slider-handle::after {
+    content: "⟷"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: var(--accent); color: #0b0d12; width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+  }
+  .slider-range { width: 100%; margin-top: 8px; accent-color: var(--accent); }
+
+  /* overlay */
+  .overlay-wrap { position: relative; min-height: 260px; padding: 16px; }
+  .overlay-wrap .after-layer { position: absolute; inset: 0; padding: 16px; }
+  .overlay-range { width: 100%; margin-top: 8px; accent-color: var(--accent-2); }
+
+  .changes-list { margin: 16px 0 0; padding-left: 20px; color: var(--text); }
+  .changes-list li { margin-bottom: 4px; }
+
+  /* Technical details */
+  details.tech {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-top: 32px;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  details.tech summary { cursor: pointer; color: var(--text); font-weight: 600; }
+  details.tech ul { padding-left: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <h1>Frontend Change Report</h1>
+      <div class="meta">{{PROJECT_NAME}} · {{REPORT_DATE}}</div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b>{{COMPONENT_COUNT}}</b><span>Components</span></div>
+      <div class="stat"><b>{{PAGE_COUNT}}</b><span>Pages</span></div>
+      <div class="stat"><b>{{RESPONSIVE_COUNT}}</b><span>Responsive</span></div>
+    </div>
+  </header>
+
+  <div class="summary">
+    <h2>Change Summary</h2>
+    <p>{{CHANGE_SUMMARY}}</p>
+  </div>
+
+  <!-- COMPONENT_CARD_START -->
+  <div class="card">
+    <div class="card-head">
+      <div>
+        <h3>{{COMPONENT_NAME}}</h3>
+        <div class="page">Page: {{PAGE_PATH}}</div>
+      </div>
+      <div class="badges">
+        {{CATEGORY_BADGES}}
+        {{IMPACT_BADGE}}
+      </div>
+    </div>
+
+    <div class="compare-tabs" data-compare-group>
+      <button class="active" data-view="sbs">Side-by-Side</button>
+      <button data-view="slider">Slider</button>
+      <button data-view="overlay">Overlay</button>
+    </div>
+
+    <div class="compare-stage">
+      <div class="compare-view active" data-view-panel="sbs">
+        <div class="side-by-side">
+          <div class="pane before">
+            <div class="label">Before</div>
+            {{BEFORE_CONTENT}}
+          </div>
+          <div class="pane after">
+            <div class="label">After</div>
+            {{AFTER_CONTENT}}
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-view" data-view-panel="slider">
+        <div class="slider-wrap">
+          <div class="layer before-layer">{{BEFORE_CONTENT}}</div>
+          <div class="layer after-layer">{{AFTER_CONTENT}}</div>
+          <div class="slider-handle" style="left:50%"></div>
+        </div>
+        <input type="range" class="slider-range" min="0" max="100" value="50" />
+      </div>
+
+      <div class="compare-view" data-view-panel="overlay">
+        <div class="overlay-wrap">
+          {{BEFORE_CONTENT}}
+          <div class="after-layer" style="opacity:0.5">{{AFTER_CONTENT}}</div>
+        </div>
+        <input type="range" class="overlay-range" min="0" max="100" value="50" />
+      </div>
+    </div>
+
+    <p style="margin:14px 0 4px; font-weight:600;">What changed</p>
+    <ul class="changes-list">
+      {{WHAT_CHANGED_LIST}}
+    </ul>
+  </div>
+  <!-- COMPONENT_CARD_END -->
+
+  <details class="tech">
+    <summary>Technical Details</summary>
+    {{TECHNICAL_DETAILS}}
+  </details>
+
+</div>
+
+<script>
+  // Tabs: side-by-side / slider / overlay
+  document.querySelectorAll('[data-compare-group]').forEach(function (tabs) {
+    var stage = tabs.nextElementSibling;
+    tabs.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-view]');
+      if (!btn) return;
+      tabs.querySelectorAll('button').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      stage.querySelectorAll('.compare-view').forEach(function (v) { v.classList.remove('active'); });
+      stage.querySelector('[data-view-panel="' + btn.dataset.view + '"]').classList.add('active');
+    });
+  });
+
+  // Slider drag
+  document.querySelectorAll('.slider-range').forEach(function (range) {
+    var wrap = range.previousElementSibling;
+    var afterLayer = wrap.querySelector('.after-layer');
+    var handle = wrap.querySelector('.slider-handle');
+    range.addEventListener('input', function () {
+      afterLayer.style.clipPath = 'inset(0 ' + (100 - range.value) + '% 0 0)';
+      handle.style.left = range.value + '%';
+    });
+  });
+
+  // Overlay opacity
+  document.querySelectorAll('.overlay-range').forEach(function (range) {
+    var wrap = range.previousElementSibling;
+    var afterLayer = wrap.querySelector('.after-layer');
+    range.addEventListener('input', function () {
+      afterLayer.style.opacity = range.value / 100;
+    });
+  });
+</script>
+</body>
+</html>
