@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-18T20:54:41+00:00",
-  "count": 8,
+  "generated": "2026-09-19T17:18:47+00:00",
+  "count": 11,
   "skills": [
     {
       "name": "adaptive-calendar-planner",
@@ -18,6 +18,36 @@
       "has_resources": false
     },
     {
+      "name": "bug-report-triager",
+      "folder": "bug-report-triager",
+      "description": "Turn raw software or device problem reports into structured bug reports with severity, component, reproduction steps, and missing information. Use when asked to file, structure, clean up, or triage a bug report. Does NOT fire on: requests to diagnose or fix the problem, explain an error code, review source code, or write a general customer-support email.",
+      "trigger": "Turn raw software or device problem reports into structured bug reports with severity, component, reproduction steps, and missing information. Use when asked to file, structure, clean up, or triage a bug report.",
+      "dormant": "requests to diagnose or fix the problem, explain an error code, review source code, or write a general customer-support email.",
+      "author": "Mohanad Masri",
+      "github": "mohanadmasri",
+      "category": "dev-tools",
+      "shape": "scripts",
+      "tested_on": "Python 3.12 / JHF skill runner structure",
+      "date": "2026-09-19",
+      "has_scripts": true,
+      "has_resources": false
+    },
+    {
+      "name": "commit-to-pr-builder",
+      "folder": "commit-to-pr-builder",
+      "description": "Turn the commits on a branch into a pull request title and description. Use when the user is about to open a PR, asks what to write in the PR body, wants to fill in a PR template, or wants their commits or git log summarised for reviewers. Does NOT fire on: writing a single commit message, reviewing someone else's PR, release notes or changelogs, or status updates written from commits.",
+      "trigger": "Turn the commits on a branch into a pull request title and description. Use when the user is about to open a PR, asks what to write in the PR body, wants to fill in a PR template, or wants their commits or git log summarised for reviewers.",
+      "dormant": "writing a single commit message, reviewing someone else's PR, release notes or changelogs, or status updates written from commits.",
+      "author": "Ahmad Salman",
+      "github": "ahmad-salman322",
+      "category": "dev-tools",
+      "shape": "method",
+      "tested_on": "Claude Code 2.1.272",
+      "date": "2026-09-19",
+      "has_scripts": false,
+      "has_resources": false
+    },
+    {
       "name": "find-skills",
       "folder": "find-skills",
       "description": "Find an existing agent skill instead of building one from scratch. Use when the user asks to find a skill for a task, whether a skill already exists for something, or says they are about to build a skill and wants to check first. Searches The Skill Foundry, skillspool.org and GitHub. Does NOT fire on: writing or editing a skill they already have, reviewing a skill's quality, or finding a Python package, VS Code extension or MCP server.",
@@ -30,6 +60,21 @@
       "tested_on": "Windows 11 / Python 3.14 / VS Code 1.137",
       "date": "2026-09-13",
       "has_scripts": true,
+      "has_resources": true
+    },
+    {
+      "name": "frontend-change-visualizer",
+      "folder": "frontend-change-visualizer",
+      "description": "Turn a frontend code change (a diff, a commit, another agent's redesign) into a standalone visual before/after report — only the parts that actually changed, explained in plain language. Use when the user asks to \"show what changed\", \"visualize the redesign\", or \"before and after this update\". Does NOT fire on: making the UI change itself, reviewing code quality or security, or requests with no prior \"before\" state to compare against.",
+      "trigger": "Turn a frontend code change (a diff, a commit, another agent's redesign) into a standalone visual before/after report — only the parts that actually changed, explained in plain language. Use when the user asks to \"show what changed\", \"visualize the redesign\", or \"before and after this update\".",
+      "dormant": "making the UI change itself, reviewing code quality or security, or requests with no prior \"before\" state to compare against.",
+      "author": "Khaled Idkeadik",
+      "github": "khaledidk",
+      "category": "dev-tools",
+      "shape": "knowledge",
+      "tested_on": "VS Code 1.137",
+      "date": "2026-09-15",
+      "has_scripts": false,
       "has_resources": true
     },
     {
