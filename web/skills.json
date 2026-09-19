@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-19T17:18:47+00:00",
-  "count": 11,
+  "generated": "2026-09-19T17:37:17+00:00",
+  "count": 12,
   "skills": [
     {
       "name": "adaptive-calendar-planner",
@@ -104,6 +104,21 @@
       "shape": "method",
       "tested_on": "VS Code 1.137",
       "date": "2026-09-18",
+      "has_scripts": false,
+      "has_resources": false
+    },
+    {
+      "name": "pro-website-builder",
+      "folder": "pro-website-builder",
+      "description": "Build or improve a professional website when the user asks to create, redesign, or enhance a website, web app, landing page, dashboard, portfolio, store, or other web experience, including planning its pages, features, data, visuals, responsive UI, accessibility, and functionality. Does NOT fire for general programming tasks that do not involve building or improving a website.",
+      "trigger": "Build or improve a professional website when the user asks to create, redesign, or enhance a website, web app, landing page, dashboard, portfolio, store, or other web experience, including planning its pages, features, data, visuals, responsive UI, accessibility, and functionality. Does NOT fire for general programming tasks that do not involve building or improving a website.",
+      "dormant": "",
+      "author": "Janat Halaseh",
+      "github": "halasehjanat-collab",
+      "category": "dev-tools",
+      "shape": "method",
+      "tested_on": "VS Code + GitHub Copilot",
+      "date": "2026-09-19",
       "has_scripts": false,
       "has_resources": false
     },
