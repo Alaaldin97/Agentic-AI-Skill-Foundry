@@ -4,6 +4,24 @@ description: Build or improve a professional website when the user asks to creat
 ---
 # Pro Website Builder
 
+## When to use this
+
+Fires when the user asks to create, redesign, or enhance a website, web app,
+landing page, dashboard, portfolio, store, or other web experience — including
+planning its pages, features, data, visuals, responsive UI, accessibility and
+functionality.
+
+**Does NOT fire on:** general programming tasks that do not involve building or
+improving a website, explaining a web concept for study rather than applying it,
+or auditing a site that is already built and heading for launch.
+
+## Steps
+
+The numbered sections below are the process, in order: discovery and planning
+first (§1–§2), then the decision engine and setup (§4–§5), architecture and data
+(§6–§8), build quality (§9–§22), then verification against the Definition of Done
+(§25–§26). Do not begin implementation before the discovery in §1 is complete.
+
 ## 1. Purpose
 
 This Skill helps an Agent build professional, responsive, data-driven websites from natural-language requirements. It is designed to work across many website types and does not force one visual style, architecture, or stack onto every project. The goal is to turn a brief into a clean, usable, production-minded web product while preserving the needs of the project and the user.
