@@ -1,6 +1,6 @@
 ---
-name: Frontend-Change-Visualizer
-description: Turn a frontend code change (a diff, a commit, another agent's redesign) into a standalone visual before/after report — only the parts that actually changed, explained in plain language. Use when the user asks to "show what changed", "visualize the redesign", "before and after this update", or after any UI-affecting edit lands and someone wants to see the impact without reading code.
+name: frontend-change-visualizer
+description: Turn a frontend code change (a diff, a commit, another agent's redesign) into a standalone visual before/after report — only the parts that actually changed, explained in plain language. Use when the user asks to "show what changed", "visualize the redesign", or "before and after this update". Does NOT fire on: making the UI change itself, reviewing code quality or security, or requests with no prior "before" state to compare against.
 ---
 
 # Skill: Frontend Change Visualizer
