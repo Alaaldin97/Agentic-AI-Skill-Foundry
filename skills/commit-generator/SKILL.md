@@ -22,9 +22,8 @@ Fires when the user asks to:
 
 - how do I use git rebase — because it is a conceptual question, not a commit writing request
 - explain git commit commands — because it asks for documentation rather than generating a message
-
-> Be specific here. This section is what stops your skill hijacking unrelated
-> conversations once someone has thirty skills installed.
+- writing a pull request description from a branch's commits — that summarises a branch for
+  reviewers, not a single change (see `commit-to-pr-builder`)
 
 ## Steps
 

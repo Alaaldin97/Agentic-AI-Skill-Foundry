@@ -1,7 +1,7 @@
 # Evidence — `commit-generator`
 
 
-**Tested on:** <VS Code  1.135.0> · **Date:** <2026-09-20>
+**Tested on:** VS Code 1.135.0 · Module 5B `skill_runner.py` · **Date:** 2026-09-20
 
 ---
 
@@ -41,7 +41,8 @@ PROGRESSIVE DISCLOSURE — what it actually cost
 --------------------------------------------------------------------
 ```
 
-**Did it activate on its own?** <yes>
+**Did it activate on its own?** Yes — the prompt never names the skill, and six
+other skills were on disk for the router to choose from.
 
 ---
 
@@ -56,7 +57,7 @@ things that merely sound similar.
 how do I use git rebase
 ```
 
-***Did it stay dormant?** yes
+**Did it stay dormant?** Yes.
 
 **Why this one is a real test:** It involves Git and version control terminology, but it is an instructional/conceptual question rather than a request to generate a commit message.
 
@@ -64,11 +65,16 @@ how do I use git rebase
 
 ## 3. What it cost
 
-|| | Tokens (approx.) |
+From the run above, with 7 skills on disk:
+
+| | Tokens (approx.) |
 |---|---|
-| Description in the menu (always loaded) | ~473 |
+| Description in the menu (always loaded) | ~473 for the whole 7-skill menu |
 | Body, once it fired | ~180 |
-| What stayed on disk because it did not fire | ~2,262 |
+| What stayed on disk because it did not fire | ~180 |
+
+The runner reported ~2,262 tokens had every skill been loaded eagerly, against
+~180 actually loaded — a saving of ~2,082 on that turn.
 
 ---
 
@@ -77,3 +83,33 @@ how do I use git rebase
 - Known limitation: None.
 - Needs an API key / network:  no
 - Anything that surprised you: The router efficiently distinguished between formatting a commit and general git usage.
+
+---
+
+## 5. Reviewer verification
+
+Re-run by Alaaldin Ahmed on 2026-09-21 with `commit-to-pr-builder` also on disk,
+to confirm the two commit-related skills do not compete for the same prompts.
+
+```text
+REQUEST  generate a conventional commit for these changes: fixed a bug in the login form validation
+SKILLS   5 on disk: bug-report-triager, commit-generator, commit-to-pr-builder, frontend-change-visualizer, student-code-reviewer
+ROUTED   commit-generator
+
+ANSWER
+fix(login): correct bug in login form validation
+```
+
+```text
+REQUEST  I'm about to open a pull request for this branch. What should I write in the description?
+ROUTED   commit-to-pr-builder
+```
+
+```text
+REQUEST  how do I use git rebase
+ROUTED   NO_SKILL — answering directly
+```
+
+The boundary holds in both directions: a single-change commit goes to
+`commit-generator`, a branch summary goes to `commit-to-pr-builder`, and the
+conceptual git question loads neither.
