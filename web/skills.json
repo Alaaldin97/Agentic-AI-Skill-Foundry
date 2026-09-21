@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-19T17:37:17+00:00",
-  "count": 12,
+  "generated": "2026-09-21T15:03:07+00:00",
+  "count": 13,
   "skills": [
     {
       "name": "adaptive-calendar-planner",
@@ -30,6 +30,21 @@
       "tested_on": "Python 3.12 / JHF skill runner structure",
       "date": "2026-09-19",
       "has_scripts": true,
+      "has_resources": false
+    },
+    {
+      "name": "commit-generator",
+      "folder": "commit-generator",
+      "description": "Generate standard conventional commit messages from a list of code changes or diff descriptions. Use when the user asks to write a commit message, generate a conventional commit, or summarize changes for a commit. Does NOT fire on: questions about git rebase, general version control help, or explaining git commit commands.",
+      "trigger": "Generate standard conventional commit messages from a list of code changes or diff descriptions. Use when the user asks to write a commit message, generate a conventional commit, or summarize changes for a commit.",
+      "dormant": "questions about git rebase, general version control help, or explaining git commit commands.",
+      "author": "Duha Ki",
+      "github": "duha-se",
+      "category": "dev-tools",
+      "shape": "instructions",
+      "tested_on": "VS Code 1.135.0",
+      "date": "2026-09-20",
+      "has_scripts": false,
       "has_resources": false
     },
     {
