@@ -51,7 +51,10 @@ def check_overlaps(blocks):
         if b["_start"] < a["_end"]:
             stacked = "(stacked)" in a.get("title", "") or "(stacked)" in b.get("title", "")
             if not stacked:
-                warnings.append(f"OVERLAP: '{a['title']}' ends {a['end']} but '{b['title']}' starts {b['start']}")
+                warnings.append(
+                    f"OVERLAP: '{a.get('title', '?')}' ends {a['end']} "
+                    f"but '{b.get('title', '?')}' starts {b['start']}"
+                )
     return warnings
 
 

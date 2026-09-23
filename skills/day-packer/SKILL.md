@@ -1,12 +1,12 @@
 ---
 name: day-packer
 description: >
-  Use when the user dumps a list of tasks, errands, shifts or goals and asks to
-  plan their day or week, "fit everything in", "organize my day", or make a
-  schedule / timetable / time blocks. Packs them into a timed plan with no fixed
-  day window (can cross midnight), plus .xlsx and .ics files.
-  Does NOT fire on: a single reminder or one calendar event, questions about
-  dates or time zones, or project/sprint planning with no clock times.
+  Build a timetable from scratch, with no connected calendar, when the user dumps
+  a list of tasks, errands, shifts or goals and asks to "fit everything in",
+  "organize my day", or make a schedule / timetable / time blocks. Packs the dump
+  into a timed plan that can cross midnight and writes .xlsx and .ics files.
+  Does NOT fire on: adding or moving events in a connected calendar, a single
+  reminder, date or time-zone questions, or sprint planning with no clock times.
 ---
 
 # Day Packer
