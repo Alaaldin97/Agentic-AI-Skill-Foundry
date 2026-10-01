@@ -1,0 +1,13 @@
+author: Aya Diab
+github: AyaDiab-dev
+date: 2026-10-01
+
+category: business
+shape: knowledge
+
+tested_on: Module 5B skill-runner with openai/gpt-4o-mini (reviewer re-test with openai/gpt-4.1-mini)
+
+requires:
+  - none
+
+source: original
