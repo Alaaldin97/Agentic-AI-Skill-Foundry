@@ -19,9 +19,9 @@ Do not use it for CV comparisons, interview preparation, general job searches, o
 
 2. Call `read_resource` exactly once to read `resources/opportunity-checklist.md`. After it returns, analyze the message and answer directly. Do not call any other tool, including `run_script` or `run_subagent`.
 
-3. Extract only claims explicitly supported by the supplied message. Present them under **Confirmed facts**.
+3. Extract the 3 most decision-relevant claims explicitly supported by the supplied message. Present them under **Confirmed facts**.
 
-4. Identify important information that is absent, ambiguous, conditional, or merely implied. Present it under **Missing or ambiguous information**.
+4. Identify the 3 most important details that are absent, ambiguous, conditional, or merely implied. Present them under **Missing or ambiguous information**.
 
 5. Compare the message with the checklist. Report a warning sign only when specific wording or behavior in the supplied material supports it.
 
@@ -33,7 +33,7 @@ Do not use it for CV comparisons, interview preparation, general job searches, o
 
 7. Explain the label briefly while distinguishing confirmed facts, reasonable inferences, and unknown information.
 
-8. Generate a short prioritized list of verification questions. Do not ask questions that the message already answers clearly.
+8. Generate up to 3 prioritized verification questions. Do not ask questions that the message already answers clearly.
 
 9. Draft a concise professional reply in the same language as the user's request unless the user asks for another language.
 
@@ -48,8 +48,8 @@ Do not use it for CV comparisons, interview preparation, general job searches, o
 - Use only `read_resource`, exactly once.
 - Do not call `run_script`, `run_subagent`, or any other tool.
 - After reading the checklist, produce the final answer directly.
-- Keep the complete answer under 200 words.
-- Use short bullets and no introductory paragraph.
+- Keep the complete answer under 200 words by staying within the limit given for each section in the output format, even when the message contains more details.
+- Use short bullets of at most 12 words each, and no introductory paragraph.
 - Preserve the strength and meaning of the original wording.
 - Do not change phrases such as "work with" into stronger claims such as "partner with."
 - Do not invent urgency, guarantees, relationships, or promises absent from the message.
@@ -67,15 +67,15 @@ Do not use it for CV comparisons, interview preparation, general job searches, o
 
 ### Confirmed facts
 
-List only information explicitly supported by the message. Describe unverified statements as claims made by the sender.
+List at most 3 items, choosing those that matter most for the decision. Use only information explicitly supported by the message, and describe unverified statements as claims made by the sender.
 
 ### Missing or ambiguous information
 
-List the important unanswered or unclear details.
+List up to 3 details that matter most for the user's decision, as short noun phrases such as `Organizer's legal name and official website`.
 
 ### Warning signs
 
-List each supported warning sign with its evidence. If none are supported, write:
+List up to 3 supported warning signs, each with its evidence. If none are supported, write:
 
 `None identified from the supplied message.`
 
@@ -85,19 +85,19 @@ Write exactly one:
 
 `LOW CONCERN`, `NEEDS VERIFICATION`, or `HIGH CONCERN`
 
-Add brief reasoning that distinguishes facts, inferences, and unknowns.
+Add one short sentence of reasoning that distinguishes facts, inferences, and unknowns.
 
 ### Questions to ask
 
-Provide only the highest-priority unanswered questions.
+Provide up to 3 of the highest-priority unanswered questions.
 
 ### Suggested reply
 
-Write a concise professional message in the user's language.
+Write a professional message of at most 40 words in the user's language.
 
 ### Recommended next action
 
-Provide one clear and proportionate next step.
+Provide one clear and proportionate next step in one sentence.
 
 ## Resource
 
