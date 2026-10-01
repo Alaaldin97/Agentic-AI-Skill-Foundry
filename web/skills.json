@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-23T15:13:01+00:00",
-  "count": 14,
+  "generated": "2026-10-01T19:07:06+00:00",
+  "count": 15,
   "skills": [
     {
       "name": "adaptive-calendar-planner",
@@ -194,6 +194,21 @@
       "shape": "knowledge",
       "tested_on": "VS Code 1.137",
       "date": "2026-09-17",
+      "has_scripts": false,
+      "has_resources": true
+    },
+    {
+      "name": "vague-opportunity-checker",
+      "folder": "vague-opportunity-checker",
+      "description": "Analyze vague internship, training, recruiting, mentorship, freelance, or other professional-opportunity messages. Separate confirmed facts from missing details, identify supported warning signs, draft verification questions, and recommend a safe next action. Use when the user provides a specific opportunity message that is unclear or difficult to verify. Does NOT fire on: CV-to-job comparisons, interview preparation, general job searches, company research, or application writing.",
+      "trigger": "Analyze vague internship, training, recruiting, mentorship, freelance, or other professional-opportunity messages. Separate confirmed facts from missing details, identify supported warning signs, draft verification questions, and recommend a safe next action. Use when the user provides a specific opportunity message that is unclear or difficult to verify.",
+      "dormant": "CV-to-job comparisons, interview preparation, general job searches, company research, or application writing.",
+      "author": "Aya Diab",
+      "github": "AyaDiab-dev",
+      "category": "business",
+      "shape": "knowledge",
+      "tested_on": "Module 5B skill-runner with openai/gpt-4o-mini (reviewer re-test with openai/gpt-4.1-mini)",
+      "date": "2026-10-01",
       "has_scripts": false,
       "has_resources": true
     },
