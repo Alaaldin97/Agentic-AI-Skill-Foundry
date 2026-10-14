@@ -1,0 +1,11 @@
+# Metadata for the catalog.
+
+author: Sari Tahhan
+github: set168111
+date: 2026-10-14
+category: dev-tools
+shape: method
+tested_on: "VS Code 1.141.0 · GitHub Copilot · Windows 11"
+requires:
+  - none
+source: original
