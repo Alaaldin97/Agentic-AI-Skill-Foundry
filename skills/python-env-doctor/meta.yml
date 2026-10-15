@@ -1,0 +1,14 @@
+
+author: demadabbagh
+github: demadabbagh
+date: 2026-10-15
+
+category: dev-tools
+shape: method
+
+tested_on: Module 05B skill_runner.py with Python 3.12 on PowerShell
+
+requires:
+  - none
+
+source: original
