@@ -1,0 +1,12 @@
+author: SHAHDmu8
+github: SHAHDmu8
+date: 2026-10-23
+
+category: dev-tools
+shape: scripts
+tested_on: Windows 11 / Python 3.12 / JHF skill runner
+
+requires:
+  - python3
+
+source: adapted from the Module 05B Agent Skills lab
